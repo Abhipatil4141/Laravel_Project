@@ -12,7 +12,8 @@
     
 
 
-    <form action="{{url('/')}}/register" method="post">
+    {{-- <form action="{{url('/')}}/register" method="post"> --}}
+    <form action="{{route('register')}}" method="post">
         @csrf {{-- this is token for data  --}}
         <div class="container">
             <h4 class="my-3 text-center">Registration</h4>

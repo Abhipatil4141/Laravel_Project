@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rfidusers', function (Blueprint $table) {
+        Schema::create('apidatas', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname', 50);
-            $table->string('rfid')->unique();
-            $table->string('email')->unique();
-            $table->string('password', 100);
-            $table->string('phone', 13)->nullable();
+            $table->string('rfidno'); // Add the 'rfidno' column
+            $table->string('status');
+            $table->string('userId');
+         
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rfidusers');
+        Schema::dropIfExists('apidatas');
     }
 };

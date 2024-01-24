@@ -33,10 +33,11 @@ class profileController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget('user'); // Clear the user session data
+        $request->session()->flush();
 
         // Redirect to the login page after logout
 
-        return view('logout-page');
+        return view('home');
     }
 
 
@@ -47,4 +48,39 @@ class profileController extends Controller
 
         return view('userInfo', ['user' => $user]);
     }
+
+    public function profileUpdate(Request $request){
+        $id = $request->input('id');
+        // $user = rfidModel::where('id', $id)->first();
+        rfidModel::where('id', $id)->update([
+            'fullname'=> $request->input('fullname'),
+            'email'=> $request->input('email'),
+            'rfid'=> $request->input('rfid'),
+            'phone'=> $request->input('phone'),
+        ]);
+
+        return redirect()->back();
+    
+        // if ($user) {
+            // $user->update([
+            //     'fullname' => $request->fullname,
+            //     'rfid' => $request->rfid,
+            //     'email' => $request->email,
+            //     'phone' => $request->phone,
+            // ]);
+        //     return response([
+        //         'status'=>200,
+        //         'message'=>'profile Updated successfully',
+        //         'rfid' =>$request->rfid,
+        //         'email' =>$request->email,
+        //         'phone' =>$request->phone,
+        //     ]);
+        // } else {
+        //     return response([
+        //         'status' => 401,
+        //         'message' => 'error occurred',
+        //     ]);    
+        // }
+    }
+    
 }

@@ -45,6 +45,7 @@
 <div class="container mt-5">
   <div class="container text-center"> 
   <h1>Welcome to GoMyGPS, {{ $user->fullname }}!</h1>
+  {{-- <form action="#"></form> --}}
  
   </div> 
 </div>

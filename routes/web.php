@@ -36,7 +36,8 @@ Route::get("/", [RfiduserController::class,'homepage'])->name('home');
 
 // for registration page Routes
 Route::get('/index', [RfiduserController::class, 'index'])->name('index');
-Route::post('/register', [RfiduserController::class,'register'])->name('registration');
+Route::post('/register', [RfiduserController::class,'register'])->name('register');
+
 
 
 // Login page Routes
@@ -54,7 +55,10 @@ Route::match(['get', 'post'], '/logout', [profileController::class, 'logout'])->
 
 
 
-Route::match(['get', 'post'], '/ProfileInfo', [profileController::class, 'profileInfo'])->name('profileInfo');
+// Route::match(['get', 'post'], '/ProfileInfo', [profileController::class, 'profileInfo'])->name('profileInfo');
+Route::get('profileinfo', [profileController::class,'profileInfo'])->name('profileInfo');
+// Route
+Route::post('/updateprofile', [profileController::class,'profileUpdate'])->name('updateprofile');
 
 
 
