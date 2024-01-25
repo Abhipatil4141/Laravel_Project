@@ -17,20 +17,7 @@
                     <h2 class="text-center">User Profile</h2>
                 </div>
                 <div class="card-body">
-                    {{-- <p><strong>Name:</strong> {{ $user->fullname}}</p>
-                    <p><strong>Email:</strong> {{ $user->email }}</p>
-                    <p><strong>RFID Number:</strong> {{ $user->rfid }}</p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- Image upload form -->
-                            <form action="{{ url('/upload') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="profileImage">Profile Image:</label>
-                                    <input type="file" class="form-control-file" id="profileImage" name="profileImage">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Upload Image</button>
-                            </form> --}}
+                    
                             <form action="{{route('updateprofile')}}" method="post" id="updateform">
                                 <div id="success_alert"></div>
                                 @csrf
@@ -55,21 +42,27 @@
                             </form>
                         </div>
                     </div>
+                    @if(isset($datapacket))
+                     <p>User Information:</p>
+    
+                    <p>Datapacket Information:</p>
+                    <ul>
+                    <!-- Display datapacket fields as needed -->
+                    <li>RFID No : {{ $datapacket->rfidno }}</li>
+                    <li>Status: {{ $datapacket->status }}</li>
+                         <li>Time: {{ $datapacket->created_at }}</li>
+        
+                        <!-- Add more rows for other fields as needed -->
+                    </ul>
+
+                    @else
+                    <p>Error: {{ $error ?? 'RFID not found in datapackets' }}</p>
+                @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(function(){
-      $("#updateform").change(function(e){
-        e,preventDefault();
-        $("#profile_btn").val("Updating...")
-      })
-
-
-});
-</script>
 
 </body>
 </html>
